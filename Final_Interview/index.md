@@ -3,9 +3,9 @@
 ### [Problem 146 from LeetCode](https://leetcode.com/problems/lru-cache/description/)
 
 # LRU Cache
-Design a class that functions like a [Least Recently Used (LRU) cache](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU) **which can work in any programming language**. A LRU is a type of Cache that, when full, discards the element that was utilized the longest time ago. In this problem assume that the cache's capacity is defined in it's initialization and that it should receive a key with its value.
+Design a class that functions like a [Least Recently Used (LRU) cache](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU), **preferably which can work in any programming language**. A LRU is a type of Cache that, when full, discards the element that was utilized the longest time ago. In this problem assume that the cache's capacity is defined in it's initialization and that it should receive a key with its value.
 
-As a cache, it must have `put` and `get` functionality and both must at least have a time complexity of O(1) on average.
+As a cache, it must have `put` and `get` functionality and ideally both must have a time complexity of O(1) on average.
 
 * the `get` function should return the `value` of the `key` if it exists, otherwise return `-1`.
 
@@ -48,7 +48,9 @@ The most attractive data structure for the implementation of the cache is a hash
 
 Another option is a doubly linked List which is quick for inserting at the beginning or end, has the advantage that it can be ordered, and each node "knows" which comes before and after permitting quicker insertions, deletions and moving of nodes outside the edges when compared to a single linked list. Although it has the disadvantage that searching them is still costly, therefore the same is true for inserting and deleting outside the edges.
 
-However, if we combine them into a Hash doubly Linked List then we can get the best of both worlds. If we store the node class as the value of the key in the hash table, we are now able to quickly look them up, enabling the quick search, insertion, and deletion of nodes in the middle of the list, all the while being able to preserve the order of the most to the least recently used keys. 
+However, if we combine them into a Hash doubly Linked List then we can get the best of both worlds. If we store the node class as the value of the key in the hash table, we are now able to quickly look them up, enabling the quick search, insertion, and deletion of nodes in the middle of the list, all the while being able to preserve the order of the most to the least recently used keys.
+
+Now all that is left is to arrange the algorithmn that moves the nodes around as they are inserted or checked, and implementing the logic of deleting the LRU node when the cache is full.
 
 A suggestion for the initialization of the linked list is to have two "dummy" nodes that act as the head and the tail of your list, inserting the actual values in the middle. The closer a node is to the head of the list the more recently used it has been with the least recently used one being the one just before the tail node.
 
